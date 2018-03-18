@@ -10,6 +10,7 @@ class BowlingStore{
     @observable score = 0
     @observable strike = false
     @observable rollGif =  ""
+    @observable gifEnded =  false
 }
 
 var store =  window.store = new BowlingStore
