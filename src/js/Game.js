@@ -36,6 +36,10 @@ export default class Game extends React.Component {
     }      
   }
 
+  addToScore(){
+    this.props.store.score += this.props.store.lastScore
+  }
+
   showUpdatedInfos(){
 
     this.props.store.lastScore = this.pinsKnockedDown()
@@ -43,30 +47,30 @@ export default class Game extends React.Component {
     if (this.props.store.currentRoll === 'first') {
       // first
       if (this.checkIfStrike(this.props.store.lastScore)) {
-        this.props.store.score += this.props.store.lastScore
+        this.addToScore()
         this.props.store.currentRoll = 'strike'
         alert('Strike!!! 10 points!')
       }else{
-        this.props.store.score += this.props.store.lastScore
+        this.addToScore()
         this.props.store.currentRoll = 'last'
       }      
     }else if(this.props.store.currentRoll === 'strike') {
       // strike
       if (this.checkIfStrike(this.props.store.lastScore)) {
-        this.props.store.score += this.props.store.lastScore
+        this.addToScore()
         this.props.store.currentRoll = 'spare'
         alert('Spare!!! 10 points!')
       }else{
-        this.props.store.score += this.props.store.lastScore
+        this.addToScore()
         this.props.store.currentRoll = 'last'
       }
     }else if(this.props.store.currentRoll === 'spare') {
       // spare
-      this.props.store.score += this.props.store.lastScore
+      this.addToScore()
       this.props.store.currentRoll = 'last'
     }else if(this.props.store.currentRoll === 'last') { 
       // last
-      this.props.store.score += this.props.store.lastScore
+      this.addToScore()
       this.props.store.currentRoll = 'first'    
       this.props.store.frames --  
     }
